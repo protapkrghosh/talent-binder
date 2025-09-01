@@ -42,7 +42,9 @@ const Navbar = () => {
                   {links}
                </ul>
             </div>
-            <a className="text-2xl font-extrabold">TalentBinder</a>
+            <NavLink to={"/"} className="text-2xl font-extrabold">
+               TalentBinder
+            </NavLink>
          </div>
          <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
