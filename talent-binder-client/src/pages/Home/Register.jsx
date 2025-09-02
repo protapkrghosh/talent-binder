@@ -2,6 +2,7 @@ import Lottie from "lottie-react";
 import register from "./register.json";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router";
 
 const Register = () => {
    const { createUser } = useContext(AuthContext);
@@ -65,7 +66,7 @@ const Register = () => {
                         ></path>
                      </g>
                   </svg>
-                  Login with Google
+                  Sign in with Google
                </button>
 
                <div className="divider w-full mt-0">Or continue with</div>
@@ -98,9 +99,21 @@ const Register = () => {
                      className="input w-full focus-within:border-primary focus-visible:outline-0 py-6 mb-3"
                   />
 
-                  <button className="btn btn-secondary text-white py-6 mt-4">
+                  <button className="btn btn-secondary text-white py-6 mt-4 mb-2">
                      Register
                   </button>
+
+                  <div>
+                     <h5 className="text-accent">
+                        Already have an account?{" "}
+                        <Link
+                           to={"/signin"}
+                           className="text-secondary hover:text-primary duration-200"
+                        >
+                           Sign In
+                        </Link>
+                     </h5>
+                  </div>
                </form>
             </div>
          </div>
