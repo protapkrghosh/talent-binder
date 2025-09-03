@@ -1,16 +1,32 @@
 import { Link } from "react-router";
-import register from "./register.json";
+import login from "./login.json";
 import Lottie from "lottie-react";
+import toast from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const SignIn = () => {
+   const { signInUser } = useContext(AuthContext);
+
    const handleSignIn = (e) => {
       e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const email = formData.get("email");
+      const password = formData.get("password");
+
+      signInUser(email, password)
+         .then((result) => {
+            console.log(result.user);
+            toast.success("Sign in successfully");
+         })
+         .catch((error) => console.log(error));
    };
 
    return (
       <div className="md:flex justify-around items-center py-16">
          <div className="hidden md:block">
-            <Lottie animationData={register} loop={true} />
+            <Lottie animationData={login} loop={true} />
          </div>
 
          {/* Sign in form */}
