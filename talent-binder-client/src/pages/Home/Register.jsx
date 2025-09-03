@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router";
 import toast from "react-hot-toast";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";
 
 const Register = () => {
    const { createUser } = useContext(AuthContext);
@@ -17,10 +19,19 @@ const Register = () => {
       // Create user
       createUser(email, password)
          .then((result) => {
-            console.log(result.user);
-            toast.success("Register Successfully");
+            const name = email.split("@")[0];
+            updateProfile(auth.currentUser, {
+               displayName: name,
+            })
+               .then(() => {
+                  toast.success("Register Successfully");
+               })
+               .catch((error) => toast.error(error.code));
          })
-         .catch((error) => toast.error(error.code));
+         .catch((error) => {
+            toast.error(error.code);
+            console.log(error);
+         });
    };
 
    return (

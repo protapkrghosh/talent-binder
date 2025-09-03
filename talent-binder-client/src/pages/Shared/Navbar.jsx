@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+   const { user, signOutUser } = useContext(AuthContext);
+
+   const handleSignOut = () => {
+      signOutUser()
+         .then(() => {
+            toast.success("Sign out successful");
+         })
+         .catch((error) => toast.error(error.code));
+   };
+
    const links = (
       <>
          <li>
@@ -50,7 +62,23 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
          </div>
          <div className="navbar-end">
-            <NavLink to={"/register"}>Register</NavLink>
+            {user ? (
+               <>
+                  <h5 className="capitalize mr-3 font-semibold">
+                     {user?.displayName}
+                  </h5>
+                  <button
+                     onClick={handleSignOut}
+                     className="btn btn-sm cursor-pointer"
+                  >
+                     Sign Out
+                  </button>
+               </>
+            ) : (
+               <NavLink to={"/register"} className={"btn btn-sm"}>
+                  Register
+               </NavLink>
+            )}
          </div>
       </div>
    );
