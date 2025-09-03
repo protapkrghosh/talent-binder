@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
    const { user, signOutUser } = useContext(AuthContext);
@@ -54,9 +55,12 @@ const Navbar = () => {
                   {links}
                </ul>
             </div>
-            <NavLink to={"/"} className="text-2xl font-extrabold">
-               TalentBinder
+
+            <NavLink to={"/"} className="flex items-center">
+               <img src={logo} alt="Talent Binder" className="w-12 mr-2" />
+               <h4 className="text-xl font-extrabold">Talent Binder</h4>
             </NavLink>
+            
          </div>
          <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
