@@ -17,14 +17,15 @@ const Navbar = () => {
 
    const links = (
       <>
-         <li>
-            <NavLink to={"/"}>Home</NavLink>
-         </li>
+         <NavLink to={"/"}>Home</NavLink>
+         <NavLink to={"/"}>Find a Job</NavLink>
+         <NavLink to={"/"}>Recruiter</NavLink>
+         <NavLink to={"/"}>Candidates</NavLink>
       </>
    );
 
    return (
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-base-100 px-12 py-4 sticky top-0">
          <div className="navbar-start">
             <div className="dropdown">
                <div
@@ -50,19 +51,19 @@ const Navbar = () => {
                </div>
                <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-6"
                >
                   {links}
                </ul>
             </div>
 
             <NavLink to={"/"} className="flex items-center">
-               <img src={logo} alt="Talent Binder" className="w-12 mr-2" />
+               <img src={logo} alt="Talent Binder" className="w-[45px] mr-2" />
                <h4 className="text-xl font-extrabold">Talent Binder</h4>
             </NavLink>
          </div>
          <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+            <ul className="menu menu-horizontal px-1 space-x-6">{links}</ul>
          </div>
          <div className="navbar-end">
             {user ? (
