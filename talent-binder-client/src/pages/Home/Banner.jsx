@@ -23,7 +23,6 @@ const Banner = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   className="mb-5 text-[42px] font-bold max-w-[540px] mx-auto"
-                  q
                >
                   The #1{" "}
                   <motion.span
@@ -54,16 +53,19 @@ const Banner = () => {
                      {/* Industry */}
                      <div className="flex items-center gap-2 text-accent px-3 border-r">
                         <FaBriefcase className="text-[#a0abb893]" />
-                        <select className="select select-ghost w-32 focus:outline-none">
-                           <option disabled selected>
+                        <select
+                           className="select select-ghost w-32 focus:outline-none"
+                           defaultValue=""
+                        >
+                           <option value="" disabled>
                               Industry
                            </option>
-                           <option>Software</option>
-                           <option>Finance</option>
-                           <option>Recruiting</option>
-                           <option>Development</option>
-                           <option>Management</option>
-                           <option>Advertising</option>
+                           <option value="Software">Software</option>
+                           <option value="Finance">Finance</option>
+                           <option value="Recruiting">Recruiting</option>
+                           <option value="Development">Development</option>
+                           <option value="Management">Management</option>
+                           <option value="Advertising">Advertising</option>
                         </select>
                      </div>
 
