@@ -25,7 +25,15 @@ const Banner = () => {
                   className="mb-5 text-[42px] font-bold max-w-[540px] mx-auto"
                   q
                >
-                  The #1 <span className="text-[#85FF83]">Job Board for </span>
+                  The #1{" "}
+                  <motion.span
+                     animate={{
+                        color: ["#85FF83", "#4ebb4c", "#85FF83"],
+                        transition: { duration: 3, repeat: Infinity },
+                     }}
+                  >
+                     Job Board for{" "}
+                  </motion.span>
                   Hiring or Find your next job
                </motion.h1>
 

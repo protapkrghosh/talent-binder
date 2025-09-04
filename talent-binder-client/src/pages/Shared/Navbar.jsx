@@ -59,7 +59,7 @@ const Navbar = () => {
 
             <NavLink to={"/"} className="flex items-center">
                <img src={logo} alt="Talent Binder" className="w-[45px] mr-2" />
-               <h4 className="text-xl font-extrabold">Talent Binder</h4>
+               <h4 className="text-xl font-extrabold hidden md:block">Talent Binder</h4>
             </NavLink>
          </div>
          <div className="navbar-center hidden lg:flex">
