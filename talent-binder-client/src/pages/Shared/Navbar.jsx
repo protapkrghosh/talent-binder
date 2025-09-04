@@ -60,7 +60,6 @@ const Navbar = () => {
                <img src={logo} alt="Talent Binder" className="w-12 mr-2" />
                <h4 className="text-xl font-extrabold">Talent Binder</h4>
             </NavLink>
-            
          </div>
          <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>

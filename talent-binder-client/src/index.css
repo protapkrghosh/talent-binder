@@ -11,8 +11,13 @@
    --color-primary: #3c65f5;
    --color-secondary: #05264e;
    --color-accent: #7f757d;
+   --color-banner: #05264E;
 }
 
 body {
    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.bannerBg {
+   background-color: color-mix(in oklab, var(--color-banner) /* var(--color-neutral) */ 81%, transparent);
 }

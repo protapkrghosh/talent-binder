@@ -3,6 +3,7 @@ import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home";
 import Register from "../pages/Home/Register";
 import SignIn from "../pages/Home/SignIn";
+import PageNotFound from "../pages/PageNotFound";
 
 const router = createBrowserRouter([
    {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
          {
             path: "/signin",
             Component: SignIn,
+         },
+         {
+            path: "*",
+            Component: PageNotFound,
          },
       ],
    },
