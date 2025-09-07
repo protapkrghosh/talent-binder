@@ -20,6 +20,14 @@ const client = new MongoClient(process.env.TALENT_BINDER_URI, {
 async function run() {
    try {
       await client.connect();
+      const jobsCollection = client.db("talentBinderDB").collection("jobs");
+
+      // Jobs API
+      app.get("/jobs", async (req, res) => {
+         const cursor = await jobsCollection.find().toArray();
+         res.send(cursor);
+      });
+
       await client.db("admin").command({ ping: 1 });
       console.log(
          "Pinged your deployment. You successfully connected to MongoDB!"
