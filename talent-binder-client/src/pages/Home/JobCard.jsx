@@ -1,11 +1,9 @@
-import React from "react";
 import { GrLocation } from "react-icons/gr";
 import { WiTime8 } from "react-icons/wi";
 import { Link } from "react-router";
 
 const JobCard = ({ job }) => {
    const {
-      _id,
       title,
       location,
       jobType,
@@ -13,7 +11,6 @@ const JobCard = ({ job }) => {
       description,
       company,
       company_logo,
-      requirements,
    } = job;
 
    return (
