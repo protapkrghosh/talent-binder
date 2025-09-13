@@ -1,9 +1,13 @@
 import React, { Suspense } from "react";
 import ApplicationList from "./ApplicationList";
+import useAuth from "../../hooks/useAuth";
+import { myApplicationPromise } from "../../api/applicationApi";
 
 const MyApplications = () => {
+   const { user } = useAuth();
+
    return (
-      <div>
+      <div className="my-12">
          <Suspense
             fallback={
                <div className="flex justify-center min-h-[40vh]">
@@ -12,7 +16,9 @@ const MyApplications = () => {
                </div>
             }
          >
-            <ApplicationList />
+            <ApplicationList
+               myApplicationPromise={myApplicationPromise(user?.email)}
+            />
          </Suspense>
       </div>
    );
