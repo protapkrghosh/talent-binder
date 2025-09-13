@@ -2,7 +2,7 @@ import Lottie from "lottie-react";
 import register from "./register.json";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
@@ -10,6 +10,9 @@ import SocialLogin from "../Shared/SocialLogin";
 
 const Register = () => {
    const { createUser } = useContext(AuthContext);
+   const location = useLocation();
+   const navigate = useNavigate();
+   const from = location.state || "/";
 
    const handleRegister = (e) => {
       e.preventDefault();
@@ -25,6 +28,7 @@ const Register = () => {
                displayName: name,
             })
                .then(() => {
+                  navigate(from);
                   toast.success("Register Successfully");
                })
                .catch((error) => toast.error(error.code));
@@ -52,7 +56,7 @@ const Register = () => {
                   Access to all features. No credit card required.
                </p>
 
-               <SocialLogin />
+               <SocialLogin from={from} />
             </div>
 
             <div>

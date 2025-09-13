@@ -1,15 +1,29 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Navigate } from "react-router";
+import { Navigate, useLocation } from "react-router";
 
 const PrivateRoute = ({ children }) => {
-   const { user } = useContext(AuthContext);
+   const location = useLocation();
+   const { user, loading } = useContext(AuthContext);
 
-   if (!user) {
-      return <Navigate to={"/signin"} />;
+   if (loading) {
+      return (
+         <div className="flex justify-center items-center min-h-[50vh]">
+            <div className="flex justify-center w-96 flex-col gap-4">
+               <div className="skeleton h-32 w-full"></div>
+               <div className="skeleton h-4 w-28"></div>
+               <div className="skeleton h-4 w-full"></div>
+               <div className="skeleton h-4 w-full"></div>
+            </div>
+         </div>
+      );
    }
 
-   return { children };
+   if (!user) {
+      return <Navigate to={"/signin"} state={location.pathname} />;
+   }
+
+   return children;
 };
 
 export default PrivateRoute;

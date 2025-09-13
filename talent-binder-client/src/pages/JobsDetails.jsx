@@ -12,7 +12,7 @@ import {
 
 const JobsDetails = () => {
    const job = useLoaderData();
-   console.log(job);
+   // console.log(job);
 
    return (
       <div className="container mx-auto px-4 py-20">

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import login from "./login.json";
 import Lottie from "lottie-react";
 import toast from "react-hot-toast";
@@ -8,6 +8,9 @@ import SocialLogin from "../Shared/SocialLogin";
 
 const SignIn = () => {
    const { signInUser } = useContext(AuthContext);
+   const location = useLocation();
+   const navigate = useNavigate();
+   const from = location.state || "/";
 
    const handleSignIn = (e) => {
       e.preventDefault();
@@ -18,6 +21,7 @@ const SignIn = () => {
 
       signInUser(email, password)
          .then((result) => {
+            navigate(from);
             toast.success("Sign in successfully");
          })
          .catch((error) => console.log(error));
@@ -40,7 +44,7 @@ const SignIn = () => {
                   Access to all features. No credit card required.
                </p>
 
-               <SocialLogin />
+               <SocialLogin from={from} />
             </div>
 
             <div>
