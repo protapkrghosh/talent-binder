@@ -5,6 +5,7 @@ import Register from "../pages/Home/Register";
 import SignIn from "../pages/Home/SignIn";
 import PageNotFound from "../pages/PageNotFound";
 import JobsDetails from "../pages/JobsDetails";
+import JobApply from "../pages/JobApply";
 
 const router = createBrowserRouter([
    {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             Component: JobsDetails,
             loader: ({ params }) =>
                fetch(`${import.meta.env.VITE_BASE_URL}/jobs/${params.id}`),
+         },
+         {
+            path: "/job-apply/:id",
+            Component: JobApply,
          },
          {
             path: "/register",

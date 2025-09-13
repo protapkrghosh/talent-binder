@@ -1,6 +1,6 @@
 import { RiVerifiedBadgeLine } from "react-icons/ri";
 import { PiSuitcaseSimple } from "react-icons/pi";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import {
    FaMapMarkerAlt,
    FaBriefcase,
@@ -24,9 +24,13 @@ const JobsDetails = () => {
                   <PiSuitcaseSimple size={16} /> {job?.jobType}
                </p>
             </div>
-            <button className="btn btn-primary font-normal mt-3 md:mt-0">
+
+            <Link
+               to={`/job-apply/${job?._id}`}
+               className="btn btn-primary font-normal mt-3 md:mt-0"
+            >
                <RiVerifiedBadgeLine size={16} /> Apply Now
-            </button>
+            </Link>
          </div>
 
          {/* Job Info + Company */}
@@ -47,10 +51,12 @@ const JobsDetails = () => {
 
                   <p className="flex items-center font-medium">
                      <FaMoneyBillWave className="mr-2 text-gray-400" /> Salary:{" "}
-                     <span className="font-normal text-secondary ml-2">
+                     <div className="font-normal text-secondary ml-2">
                         {job?.salaryRange.min}-{job?.salaryRange.max}{" "}
-                        {job?.salaryRange.currency}
-                     </span>
+                        <span className="uppercase ml-1">
+                           {job?.salaryRange.currency}
+                        </span>
+                     </div>
                   </p>
 
                   <p className="flex items-center font-medium">
@@ -109,8 +115,8 @@ const JobsDetails = () => {
          <div className="prose max-w-none mb-10">
             <h2 className="text-xl font-semibold mb-3">Responsibilities</h2>
             <ul className="list-disc ml-5">
-               {job?.responsibilities.map((res, idx) => (
-                  <li key={idx}>{res}</li>
+               {job?.responsibilities.map((responsibilities, index) => (
+                  <li key={index}>{responsibilities}</li>
                ))}
             </ul>
          </div>
@@ -118,16 +124,18 @@ const JobsDetails = () => {
          {/* Requirements */}
          <div className="prose max-w-none mb-10">
             <h2 className="text-xl font-semibold mb-3">Requirements</h2>
-            <ul className="list-disc ml-5">
-               {job?.requirements.map((req, idx) => (
-                  <li key={idx}>{req}</li>
+            <ul className="list-disc ml-5 space-y-2">
+               {job?.requirements.map((skills, index) => (
+                  <li key={index}>{skills}</li>
                ))}
             </ul>
          </div>
 
          {/* Action Buttons */}
          <div className="flex gap-4">
-            <button className="btn btn-primary">Apply Now</button>
+            <Link to={`/job-apply/${job?._id}`} className="btn btn-primary">
+               Apply Now
+            </Link>
             <button className="btn btn-outline">Save Job</button>
          </div>
       </div>
