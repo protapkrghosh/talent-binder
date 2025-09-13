@@ -5,8 +5,8 @@ const JobsPost = ({ jobsPromise }) => {
    const jobs = use(jobsPromise);
 
    return (
-      <div>
-         <div className="text-center">
+      <div className="my-16">
+         <div className="text-center mb-12">
             <h2 className="text-[36px] text-secondary font-extrabold">
                Latest Jobs Post
             </h2>
