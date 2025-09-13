@@ -21,8 +21,11 @@ async function run() {
    try {
       await client.connect();
       const jobsCollection = client.db("talentBinderDB").collection("jobs");
+      const applicationCollection = client
+         .db("talentBinderDB")
+         .collection("application");
 
-      // Jobs API
+      // Jobs related API
       app.get("/jobs", async (req, res) => {
          const cursor = await jobsCollection.find().toArray();
          res.send(cursor);
@@ -32,6 +35,13 @@ async function run() {
          const { id } = req.params;
          const query = { _id: new ObjectId(id) };
          const result = await jobsCollection.findOne(query);
+         res.send(result);
+      });
+
+      // Job application related APIS
+      app.post("/application", async (req, res) => {
+         const application = req.body;
+         const result = await applicationCollection.insertOne(application);
          res.send(result);
       });
 

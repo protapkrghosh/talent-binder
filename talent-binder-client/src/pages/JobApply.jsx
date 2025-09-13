@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router";
 import useAuth from "../hooks/useAuth";
-import { FaCloudUploadAlt } from "react-icons/fa";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const JobApply = () => {
    const { id: jobId } = useParams();
@@ -14,8 +15,27 @@ const JobApply = () => {
       const phone = form.phone.value;
       const linkedin = form.linkedin.value;
       const github = form.github.value;
-      const description = form.description.value;
-      console.log({ name, email, phone, linkedin, github, description });
+      const resume = form.resume.value;
+
+      const application = {
+         jobId,
+         applicant: user.email,
+         name,
+         applyEmail: email,
+         phone,
+         linkedin,
+         github,
+         resume,
+      };
+
+      axios
+         .post(`${import.meta.env.VITE_BASE_URL}/application`, application)
+         .then((res) => {
+            if (res.data.insertedId) {
+               toast.success("Your application has been submitted");
+            }
+         })
+         .catch((error) => toast.error(error.code));
    };
 
    return (
