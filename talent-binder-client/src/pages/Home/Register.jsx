@@ -1,15 +1,14 @@
 import Lottie from "lottie-react";
 import register from "./register.json";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import SocialLogin from "../Shared/SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-   const { createUser } = useContext(AuthContext);
+   const { createUser } = useAuth();
    const location = useLocation();
    const navigate = useNavigate();
    const from = location.state || "/";

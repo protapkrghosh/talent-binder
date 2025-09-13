@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { NavLink } from "react-router";
-import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
 import logo from "../../assets/logo.png";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-   const { user, signOutUser } = useContext(AuthContext);
+   const { user, signOutUser } = useAuth();
 
    const handleSignOut = () => {
       signOutUser()

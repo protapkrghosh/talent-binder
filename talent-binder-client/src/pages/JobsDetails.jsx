@@ -49,15 +49,15 @@ const JobsDetails = () => {
                      </span>
                   </p>
 
-                  <p className="flex items-center font-medium">
+                  <div className="flex items-center font-medium">
                      <FaMoneyBillWave className="mr-2 text-gray-400" /> Salary:{" "}
-                     <div className="font-normal text-secondary ml-2">
+                     <p className="font-normal text-secondary ml-2">
                         {job?.salaryRange.min}-{job?.salaryRange.max}{" "}
                         <span className="uppercase ml-1">
                            {job?.salaryRange.currency}
                         </span>
-                     </div>
-                  </p>
+                     </p>
+                  </div>
 
                   <p className="flex items-center font-medium">
                      <FaBriefcase className="mr-2 text-gray-400" /> Job-Type:{" "}

@@ -2,12 +2,11 @@ import { Link, useLocation, useNavigate } from "react-router";
 import login from "./login.json";
 import Lottie from "lottie-react";
 import toast from "react-hot-toast";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
 import SocialLogin from "../Shared/SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 const SignIn = () => {
-   const { signInUser } = useContext(AuthContext);
+   const { signInUser } = useAuth();
    const location = useLocation();
    const navigate = useNavigate();
    const from = location.state || "/";
