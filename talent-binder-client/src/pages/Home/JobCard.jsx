@@ -84,7 +84,7 @@ const JobCard = ({ job }) => {
 
                   <Link to={`/jobs/${_id}`}>
                      <button className="btn btn-sm text-primary font-normal bg-[#E0E6F7] group-hover:bg-primary group-hover:text-white duration-500">
-                        Apply Now
+                        Show Details
                      </button>
                   </Link>
                </div>
