@@ -16,10 +16,42 @@ const Navbar = () => {
 
    const links = (
       <>
-         <NavLink to={"/"}>Home</NavLink>
-         <NavLink to={"/"}>Find a Job</NavLink>
-         <NavLink to={"/"}>Recruiter</NavLink>
-         <NavLink to={"/"}>Candidates</NavLink>
+         <NavLink
+            to={"/"}
+            className={"font-medium hover:text-primary duration-200"}
+         >
+            Home
+         </NavLink>
+
+         <NavLink
+            to={"/"}
+            className={"font-medium hover:text-primary duration-200"}
+         >
+            Find a Job
+         </NavLink>
+
+         <NavLink
+            to={"/"}
+            className={"font-medium hover:text-primary duration-200"}
+         >
+            Recruiter
+         </NavLink>
+
+         <NavLink
+            to={"/"}
+            className={"font-medium hover:text-primary duration-200"}
+         >
+            Candidates
+         </NavLink>
+
+         {user && (
+            <NavLink
+               to={"/application/me"}
+               className={"font-medium hover:text-primary duration-200"}
+            >
+               My Application
+            </NavLink>
+         )}
       </>
    );
 
@@ -58,7 +90,9 @@ const Navbar = () => {
 
             <NavLink to={"/"} className="flex items-center">
                <img src={logo} alt="Talent Binder" className="w-[45px] mr-2" />
-               <h4 className="text-xl font-extrabold hidden md:block">Talent Binder</h4>
+               <h4 className="text-xl font-extrabold hidden md:block">
+                  Talent Binder
+               </h4>
             </NavLink>
          </div>
          <div className="navbar-center hidden lg:flex">

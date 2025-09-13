@@ -39,7 +39,15 @@ async function run() {
       });
 
       // Job application related APIS
-      app.post("/application", async (req, res) => {
+      app.get("/applications", async (req, res) => {
+         const email = req.query.email;
+         const query = { applicant: email };
+         const result = await applicationCollection.find(query).toArray();
+         res.send(result);
+         console.log(req.query);
+      });
+
+      app.post("/applications", async (req, res) => {
          const application = req.body;
          const result = await applicationCollection.insertOne(application);
          res.send(result);

@@ -29,7 +29,7 @@ const JobApply = () => {
       };
 
       axios
-         .post(`${import.meta.env.VITE_BASE_URL}/application`, application)
+         .post(`${import.meta.env.VITE_BASE_URL}/applications`, application)
          .then((res) => {
             if (res.data.insertedId) {
                toast.success("Your application has been submitted");
