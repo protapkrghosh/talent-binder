@@ -3,8 +3,7 @@ import JobApplicationRow from "./JobApplicationRow";
 
 const ApplicationList = ({ myApplicationPromise }) => {
    const applications = use(myApplicationPromise);
-   console.log(applications);
-
+   
    return (
       <div className="overflow-x-auto">
          <table className="table">

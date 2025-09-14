@@ -44,6 +44,7 @@ const Navbar = () => {
             Candidates
          </NavLink>
 
+         {/* For applicant links. Check roles as well */}
          {user && (
             <NavLink
                to={"/application/me"}
@@ -51,6 +52,18 @@ const Navbar = () => {
             >
                My Application
             </NavLink>
+         )}
+
+         {/* For recruiter. Check role as well */}
+         {user && (
+            <>
+               <NavLink
+                  to={"/add-job"}
+                  className={"font-medium hover:text-primary duration-200"}
+               >
+                  Add Job
+               </NavLink>
+            </>
          )}
       </>
    );

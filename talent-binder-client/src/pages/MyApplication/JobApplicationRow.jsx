@@ -1,8 +1,9 @@
+import { Link } from "react-router";
 import { LuScanEye } from "react-icons/lu";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 const JobApplicationRow = ({ index, application }) => {
-   const { title, company, company_logo, applyEmail, name } = application;
+   const { _id, title, company, company_logo, applyEmail, name } = application;
 
    return (
       <>
@@ -26,13 +27,17 @@ const JobApplicationRow = ({ index, application }) => {
             </td>
             <td>{name}</td>
             <td>{applyEmail}</td>
+
             <th className="flex items-center gap-3">
-               <div className="text-accent hover:text-primary p-1.5 cursor-pointer group">
+               <Link
+                  to={`/jobs/${_id}`}
+                  className="text-accent hover:text-primary p-1.5 cursor-pointer group"
+               >
                   <LuScanEye
                      size={19}
                      className="group-hover:scale-110 duration-300"
                   />
-               </div>
+               </Link>
 
                <div className="text-accent hover:text-red-400 p-1.5 cursor-pointer group">
                   <FaRegTrashCan
