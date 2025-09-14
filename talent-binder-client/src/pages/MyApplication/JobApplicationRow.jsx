@@ -1,7 +1,8 @@
-import React from "react";
+import { LuScanEye } from "react-icons/lu";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 const JobApplicationRow = ({ index, application }) => {
-   const { title, company, company_logo } = application;
+   const { title, company, company_logo, applyEmail, name } = application;
 
    return (
       <>
@@ -23,16 +24,22 @@ const JobApplicationRow = ({ index, application }) => {
                   </div>
                </div>
             </td>
-            <td>
-               Zemlak, Daniel and Leannon
-               <br />
-               <span className="badge badge-ghost badge-sm">
-                  Desktop Support Technician
-               </span>
-            </td>
-            <td>Purple</td>
-            <th>
-               <button className="btn btn-ghost btn-xs">details</button>
+            <td>{name}</td>
+            <td>{applyEmail}</td>
+            <th className="flex items-center gap-3">
+               <div className="text-accent hover:text-primary p-1.5 cursor-pointer group">
+                  <LuScanEye
+                     size={19}
+                     className="group-hover:scale-110 duration-300"
+                  />
+               </div>
+
+               <div className="text-accent hover:text-red-400 p-1.5 cursor-pointer group">
+                  <FaRegTrashCan
+                     size={18}
+                     className="group-hover:scale-110 duration-300"
+                  />
+               </div>
             </th>
          </tr>
       </>

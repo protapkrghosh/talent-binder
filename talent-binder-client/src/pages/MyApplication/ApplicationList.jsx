@@ -12,10 +12,10 @@ const ApplicationList = ({ myApplicationPromise }) => {
             <thead>
                <tr>
                   <th>No</th>
+                  <th>Company Info</th>
                   <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
-                  <th></th>
+                  <th>Email</th>
+                  <th>Action</th>
                </tr>
             </thead>
             <tbody>
