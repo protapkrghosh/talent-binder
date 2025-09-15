@@ -40,21 +40,27 @@ async function run() {
 
       // Job application related APIS
       app.get("/applications", async (req, res) => {
-         const email = req.query.email;
+         const { email } = req.query;
          const query = { applicant: email };
          const result = await applicationCollection.find(query).toArray();
 
-         // This way is not good for aggregate data
          for (const application of result) {
             const jobId = application.jobId;
+
+            if (!ObjectId.isValid(jobId)) {
+               continue;
+            }
+
             const jobQuery = { _id: new ObjectId(jobId) };
             const job = await jobsCollection.findOne(jobQuery);
-            application.company = job.company;
-            application.title = job.title;
-            application.company_logo = job.company_logo;
+
+            if (job) {
+               application.company = job.company;
+               application.title = job.title;
+               application.company_logo = job.company_logo;
+            }
          }
          res.send(result);
-         console.log(req.query);
       });
 
       app.post("/applications", async (req, res) => {
