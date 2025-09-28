@@ -10,7 +10,7 @@ const MyApplications = () => {
       <div className="my-12">
          <Suspense
             fallback={
-               <div className="flex justify-center min-h-[40vh]">
+               <div className="flex justify-center min-h-[45vh]">
                   <span className="loading loading-dots loading-xl text-primary"></span>
                   <span className="loading loading-dots loading-xl text-primary"></span>
                </div>
