@@ -52,9 +52,9 @@ const JobsDetails = () => {
                   <div className="flex items-center font-medium">
                      <FaMoneyBillWave className="mr-2 text-gray-400" /> Salary:{" "}
                      <p className="font-normal text-secondary ml-2">
-                        {job?.salaryRange.min}-{job?.salaryRange.max}{" "}
+                        {job?.salaryRange?.min}-{job?.salaryRange?.max}{" "}
                         <span className="uppercase ml-1">
-                           {job?.salaryRange.currency}
+                           {job?.salaryRange?.currency}
                         </span>
                      </p>
                   </div>
@@ -115,7 +115,7 @@ const JobsDetails = () => {
          <div className="prose max-w-none mb-10">
             <h2 className="text-xl font-semibold mb-3">Responsibilities</h2>
             <ul className="list-disc ml-5">
-               {job?.responsibilities.map((responsibilities, index) => (
+               {job?.responsibilities?.map((responsibilities, index) => (
                   <li key={index}>{responsibilities}</li>
                ))}
             </ul>
@@ -125,7 +125,7 @@ const JobsDetails = () => {
          <div className="prose max-w-none mb-10">
             <h2 className="text-xl font-semibold mb-3">Requirements</h2>
             <ul className="list-disc ml-5 space-y-2">
-               {job?.requirements.map((skills, index) => (
+               {job?.requirements?.map((skills, index) => (
                   <li key={index}>{skills}</li>
                ))}
             </ul>
