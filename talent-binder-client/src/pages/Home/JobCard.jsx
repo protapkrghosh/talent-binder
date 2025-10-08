@@ -1,5 +1,4 @@
 import { GrLocation } from "react-icons/gr";
-import { WiTime8 } from "react-icons/wi";
 import { Link } from "react-router";
 import { PiSuitcaseSimple } from "react-icons/pi";
 

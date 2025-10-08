@@ -3,7 +3,10 @@ import { LuScanEye } from "react-icons/lu";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 const JobApplicationRow = ({ index, application }) => {
-   const { _id, title, company, company_logo, applyEmail, name } = application;
+   const { jobId, title, company, company_logo, applyEmail, name } =
+      application;
+
+   console.log(application);
 
    return (
       <>
@@ -30,7 +33,7 @@ const JobApplicationRow = ({ index, application }) => {
 
             <th className="flex items-center gap-3">
                <Link
-                  to={`/jobs/${_id}`}
+                  to={`/jobs/${jobId}`}
                   className="text-accent hover:text-primary p-1.5 cursor-pointer group"
                >
                   <LuScanEye
