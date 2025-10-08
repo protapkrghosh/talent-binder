@@ -1,10 +1,18 @@
 import React from "react";
 
 const AddJob = () => {
+   const handleAddAJob = (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      console.log(data);
+   };
+
    return (
       <div className="my-10">
-         <form>
-            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-lg border mx-auto p-4">
+         <form onSubmit={handleAddAJob}>
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xl border mx-auto p-4">
                <legend className="fieldset-legend">Job Information</legend>
 
                {/* Job Information */}
@@ -49,7 +57,7 @@ const AddJob = () => {
                aria-checked:bg-blue-500 aria-checked:text-white 
                checked:bg-blue-500 checked:text-white checked:border-blue-500"
                      type="checkbox"
-                     name="frameworks"
+                     name="onsite"
                      aria-label="On-Site"
                   />
 
@@ -57,7 +65,7 @@ const AddJob = () => {
                      className="btn bg-blue-50 border-blue-200 
                checked:bg-blue-500 checked:text-white checked:border-blue-500"
                      type="checkbox"
-                     name="frameworks"
+                     name="remote"
                      aria-label="Remote"
                   />
 
@@ -65,7 +73,7 @@ const AddJob = () => {
                      className="btn bg-blue-50 border-blue-200 
                checked:bg-blue-500 checked:text-white checked:border-blue-500"
                      type="checkbox"
-                     name="frameworks"
+                     name="hybrid"
                      aria-label="Hybrid"
                   />
 
@@ -80,7 +88,7 @@ const AddJob = () => {
                <label className="label">Job Category</label>
                <select
                   defaultValue="Pick a Job Category"
-                  className="select select-primary w-full focus-within:outline-0"
+                  className="select w-full focus-within:outline-0 focus:border-primary"
                >
                   <option disabled={true}>Job Category</option>
                   <option>Engineering</option>
@@ -94,7 +102,7 @@ const AddJob = () => {
                   type="date"
                   name="date"
                   id="date"
-                  className="focus-within:outline-0 border border-blue-400 rounded-sm py-2.5 px-3"
+                  className="focus-within:outline-0 focus:border-primary border border-[#D1D1D1] bg-white rounded-sm py-2.5 px-3"
                />
 
                {/* Salary Range */}
@@ -102,17 +110,20 @@ const AddJob = () => {
                <div className="join">
                   <input
                      type="text"
+                     name="min"
                      className="input join-item focus-within:outline-0 focus:border-primary"
                      placeholder="Min"
                   />
 
                   <input
                      type="text"
+                     name="max"
                      className="input join-item focus-within:outline-0 focus:border-primary"
                      placeholder="Max"
                   />
 
                   <select
+                     name="currency"
                      defaultValue="Select a Currency"
                      className="select focus-within:outline-0 focus:border-primary"
                   >
@@ -125,6 +136,53 @@ const AddJob = () => {
                      <option>MGA</option>
                   </select>
                </div>
+
+               {/* Job Description */}
+               <label className="label mt-3">Job Description</label>
+               <textarea
+                  className="textarea text-sm w-full focus-within:outline-0 focus:border-primary"
+                  placeholder="Write your job description..."
+                  name="job_description"
+               ></textarea>
+
+               {/* Job Requirements */}
+               <label className="label mt-3">Job Requirements</label>
+               <textarea
+                  className="textarea text-sm w-full focus-within:outline-0 focus:border-primary"
+                  placeholder="Write requirements (separate by comma)"
+                  name="requirements"
+               ></textarea>
+
+               {/* Job Responsibilities */}
+               <label className="label mt-3">Job Responsibilities</label>
+               <textarea
+                  className="textarea text-sm w-full focus-within:outline-0 focus:border-primary"
+                  placeholder="Write responsibilities (separate by comma)"
+                  name="responsibilities"
+               ></textarea>
+
+               {/* HR Information */}
+               <label className="label mt-3">HR Name</label>
+               <input
+                  type="text"
+                  name="hr_name"
+                  className="input w-full focus-within:outline-0 focus:border-primary"
+                  placeholder="Jacob Bell"
+               />
+
+               <label className="label mt-3">HR Email</label>
+               <input
+                  type="text"
+                  name="hr_email"
+                  className="input w-full focus-within:outline-0 focus:border-primary"
+                  placeholder="jacobbell@gmail.com"
+               />
+
+               <input
+                  type="submit"
+                  className="btn btn-primary mt-5 mb-3"
+                  value="Add Job"
+               />
             </fieldset>
          </form>
       </div>
