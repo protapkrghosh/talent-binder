@@ -1,4 +1,3 @@
-import React from "react";
 
 const AddJob = () => {
    const handleAddAJob = (e) => {
@@ -6,7 +5,7 @@ const AddJob = () => {
       const form = e.target;
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      console.log(data);
+      // console.log(data);
    };
 
    return (
