@@ -6,7 +6,9 @@ const JobApplicationRow = ({ index, application }) => {
    const { jobId, title, company, company_logo, applyEmail, name } =
       application;
 
-   console.log(application);
+   const handleDelete = () => {
+      console.log("Deleted job");
+   };
 
    return (
       <>
@@ -44,6 +46,7 @@ const JobApplicationRow = ({ index, application }) => {
 
                <div className="text-accent hover:text-red-400 p-1.5 cursor-pointer group">
                   <FaRegTrashCan
+                     onClick={handleDelete}
                      size={18}
                      className="group-hover:scale-110 duration-300"
                   />
