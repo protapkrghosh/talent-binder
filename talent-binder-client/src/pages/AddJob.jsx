@@ -1,11 +1,31 @@
+import useAuth from "../hooks/useAuth";
 
 const AddJob = () => {
+   const { user } = useAuth();
+
    const handleAddAJob = (e) => {
       e.preventDefault();
       const form = e.target;
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
       // console.log(data);
+
+      // Process salary range data
+      const { min, max, currency, ...newJob } = data;
+      newJob.salaryRange = { min, max, currency };
+
+      // Process requirements
+      newJob.requirements = newJob.requirements
+         .split(",")
+         .map((req) => req.trim());
+
+      // Precess Responsibilities
+      newJob.responsibilities = newJob.responsibilities
+         .split(",")
+         .map((req) => req.trim());
+
+      console.log(newJob);
+      // console.log(Object.keys(newJob));
    };
 
    return (
@@ -56,7 +76,8 @@ const AddJob = () => {
                aria-checked:bg-blue-500 aria-checked:text-white 
                checked:bg-blue-500 checked:text-white checked:border-blue-500"
                      type="checkbox"
-                     name="onsite"
+                     name="job_type"
+                     value="On-Site"
                      aria-label="On-Site"
                   />
 
@@ -64,7 +85,8 @@ const AddJob = () => {
                      className="btn bg-blue-50 border-blue-200 
                checked:bg-blue-500 checked:text-white checked:border-blue-500"
                      type="checkbox"
-                     name="remote"
+                     name="job_type"
+                     value="Remote"
                      aria-label="Remote"
                   />
 
@@ -72,7 +94,8 @@ const AddJob = () => {
                      className="btn bg-blue-50 border-blue-200 
                checked:bg-blue-500 checked:text-white checked:border-blue-500"
                      type="checkbox"
-                     name="hybrid"
+                     name="job_type"
+                     value="Hybrid"
                      aria-label="Hybrid"
                   />
 
@@ -99,7 +122,7 @@ const AddJob = () => {
                <label className="label mt-3">Application Dateline</label>
                <input
                   type="date"
-                  name="date"
+                  name="deadline"
                   id="date"
                   className="focus-within:outline-0 focus:border-primary border border-[#D1D1D1] bg-white rounded-sm py-2.5 px-3"
                />
@@ -108,14 +131,14 @@ const AddJob = () => {
                <label className="label mt-3">Salary Range</label>
                <div className="join">
                   <input
-                     type="text"
+                     type="number"
                      name="min"
                      className="input join-item focus-within:outline-0 focus:border-primary"
                      placeholder="Min"
                   />
 
                   <input
-                     type="text"
+                     type="number"
                      name="max"
                      className="input join-item focus-within:outline-0 focus:border-primary"
                      placeholder="Max"
@@ -173,8 +196,10 @@ const AddJob = () => {
                <input
                   type="text"
                   name="hr_email"
+                  defaultValue={user?.email}
                   className="input w-full focus-within:outline-0 focus:border-primary"
                   placeholder="jacobbell@gmail.com"
+                  readOnly
                />
 
                <input
