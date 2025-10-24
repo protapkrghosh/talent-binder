@@ -1,3 +1,5 @@
+import axios from "axios";
+import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 
 const AddJob = () => {
@@ -24,8 +26,21 @@ const AddJob = () => {
          .split(",")
          .map((req) => req.trim());
 
-      console.log(newJob);
+      newJob.status = "active";
+
+      // console.log(newJob);
       // console.log(Object.keys(newJob));
+
+      // Save job to the database
+      axios
+         .post(`${import.meta.env.VITE_BASE_URL}/jobs`, newJob)
+         .then((res) => {
+            console.log(res);
+            if (res?.data?.insertedId) {
+               toast.success("This new job has been saved and published");
+            }
+         })
+         .catch((error) => console.log(error));
    };
 
    return (
