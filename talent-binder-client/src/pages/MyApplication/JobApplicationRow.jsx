@@ -13,7 +13,7 @@ const JobApplicationRow = ({ index, application }) => {
    return (
       <>
          {/* row 1 */}
-         <tr>
+         <tr className="hover:bg-gray-50">
             <th>
                <label>{index + 1}</label>
             </th>

@@ -9,10 +9,10 @@ const PostedJobList = ({ jobsCreatedByPromise }) => {
          <h2>Jobs created by you: {jobs?.length}</h2>
 
          <div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto border border-gray-200 mt-8">
                <table className="table">
                   {/* head */}
-                  <thead>
+                  <thead className="bg-gray-100">
                      <tr>
                         <th>No</th>
                         <th>Job Title</th>
@@ -23,13 +23,13 @@ const PostedJobList = ({ jobsCreatedByPromise }) => {
                   <tbody>
                      {/* Rows */}
                      {jobs.map((job, index) => (
-                        <tr key={job?._id} className="hover:bg-base-200 group">
+                        <tr key={job?._id} className="hover:bg-gray-100 group">
                            <th>{index + 1}</th>
                            <td>{job?.job_title}</td>
                            <td>{job?.deadline}</td>
                            <td className="group-hover:text-blue-500 duration-200">
                               <Link to={`/applications/${job?._id}`}>
-                                 View Application
+                                 Details
                               </Link>
                            </td>
                         </tr>

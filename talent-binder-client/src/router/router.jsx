@@ -11,6 +11,7 @@ import MyApplications from "../pages/MyApplication/MyApplications";
 import AddJob from "../pages/AddJob";
 import MyPostedJobs from "../pages/MyPostedJobs/MyPostedJobs";
 import ViewApplication from "../pages/ViewApplication/ViewApplication";
+import axios from "axios";
 
 const router = createBrowserRouter([
    {
@@ -67,6 +68,12 @@ const router = createBrowserRouter([
                   <ViewApplication />
                </PrivateRoute>
             ),
+            loader: ({ params }) =>
+               fetch(
+                  `${import.meta.env.VITE_BASE_URL}/applications/job/${
+                     params.job_id
+                  }`
+               ),
          },
          {
             path: "/register",

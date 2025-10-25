@@ -5,10 +5,10 @@ const ApplicationList = ({ myApplicationPromise }) => {
    const applications = use(myApplicationPromise);
 
    return (
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto border border-gray-200 mt-8 mx-6">
          <table className="table">
             {/* Table head */}
-            <thead>
+            <thead className="bg-gray-100">
                <tr>
                   <th>No</th>
                   <th>Company Info</th>
@@ -17,6 +17,7 @@ const ApplicationList = ({ myApplicationPromise }) => {
                   <th>Action</th>
                </tr>
             </thead>
+
             <tbody>
                {(applications || []).map((application, index) => (
                   <JobApplicationRow
