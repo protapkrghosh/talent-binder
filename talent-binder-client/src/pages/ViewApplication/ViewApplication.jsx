@@ -1,8 +1,27 @@
+import axios from "axios";
+import toast from "react-hot-toast";
 import { useLoaderData, useParams } from "react-router";
 
 const ViewApplication = () => {
    const { job_id } = useParams();
    const application = useLoaderData();
+
+   const handleStatusChange = (e, app_id) => {
+      // console.log(e.target.value, application);
+
+      axios
+         .patch(`${import.meta.env.VITE_BASE_URL}/applications/${app_id}`, {
+            status: e.target.value,
+         })
+         .then((res) => {
+            if (res.data.modifiedCount) {
+               toast.success("Application status updated");
+            }
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   };
 
    return (
       <div className="px-6 py-10">
@@ -21,18 +40,37 @@ const ViewApplication = () => {
                            <th></th>
                            <th>Name</th>
                            <th>Job</th>
-                           <th>Favorite Color</th>
+                           <th>Status</th>
                         </tr>
                      </thead>
 
                      <tbody>
                         {/* Rows */}
                         {application.map((application, index) => (
-                           <tr key={application._id} className="hover:bg-gray-50">
+                           <tr
+                              key={application._id}
+                              className="hover:bg-gray-50"
+                           >
                               <th>{index + 1}</th>
                               <td>{application?.applicant}</td>
                               <td>Quality Control Specialist</td>
-                              <td>Blue</td>
+                              <td>
+                                 <select
+                                    onChange={(e) =>
+                                       handleStatusChange(e, application._id)
+                                    }
+                                    defaultValue={application?.status}
+                                    className="select focus-within:outline-0 w-38"
+                                 >
+                                    <option disabled={true}>
+                                       Update Status
+                                    </option>
+                                    <option>Pending</option>
+                                    <option>Interview</option>
+                                    <option>hired</option>
+                                    <option>Rejected</option>
+                                 </select>
+                              </td>
                            </tr>
                         ))}
                      </tbody>
