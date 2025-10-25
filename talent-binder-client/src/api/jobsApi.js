@@ -1,0 +1,13 @@
+import axios from "axios";
+
+export const jobsCreatedByPromise = async (email) => {
+   return axios
+      .get(`${import.meta.env.VITE_BASE_URL}/jobs?email=${email}`)
+      .then((res) => {
+         return res.data;
+      })
+      .catch((error) => {
+         console.log(error);
+         return [];
+      });
+};

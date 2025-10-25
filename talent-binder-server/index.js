@@ -27,9 +27,22 @@ async function run() {
 
       // Jobs related API
       app.get("/jobs", async (req, res) => {
-         const cursor = await jobsCollection.find().toArray();
+         const { email } = req.query;
+         const query = {};
+         if (email) {
+            query.hr_email = email;
+         }
+         const cursor = await jobsCollection.find(query).toArray();
          res.send(cursor);
       });
+
+      // Could be done but should not be done.
+      // app.get("/jobsByEmailAddress", async (req, res) => {
+      //    const { email } = req.query;
+      //    const query = { hr_email: email };
+      //    const result = await jobsCollection.find(query).toArray();
+      //    res.send(result);
+      // });
 
       app.get("/jobs/:id", async (req, res) => {
          const { id } = req.params;

@@ -63,13 +63,20 @@ const Navbar = () => {
                >
                   Add Job
                </NavLink>
+               
+               <NavLink
+                  to={"/my-posted-jobs"}
+                  className={"font-medium hover:text-primary duration-200"}
+               >
+                  My Posted Jobs
+               </NavLink>
             </>
          )}
       </>
    );
 
    return (
-      <div className="navbar bg-base-100 px-12 py-4 sticky top-0 z-50">
+      <div className="navbar bg-base-100 px-6 py-4 sticky top-0 z-50">
          <div className="navbar-start">
             <div className="dropdown">
                <div
