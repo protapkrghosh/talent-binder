@@ -2,12 +2,20 @@ require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(
+   cors({
+      origin: [`${process.env.TALENT_BINDER_BASEURL_CLIENT}`],
+      credentials: true,
+   })
+);
 app.use(express.json());
+app.use(cookieParser());
 
 const client = new MongoClient(process.env.TALENT_BINDER_URI, {
    serverApi: {
@@ -24,6 +32,21 @@ async function run() {
       const applicationCollection = client
          .db("talentBinderDB")
          .collection("application");
+
+      // JWT Token related api
+      app.post("/jwt", async (req, res) => {
+         const userData = req.body;
+         const token = jwt.sign(userData, process.env.JWT_ACCESS_SECRET, {
+            expiresIn: "1d",
+         });
+
+         // Set token in the cookie
+         res.cookie("token", token, {
+            httpOnly: true,
+            secure: false,
+         });
+         res.send({ success: true });
+      });
 
       // Jobs related API
       app.get("/jobs", async (req, res) => {
@@ -75,6 +98,7 @@ async function run() {
       // Job application related APIS
       app.get("/applications", async (req, res) => {
          const { email } = req.query;
+         console.log("Inside applications api", req.cookies);
          const query = { applicant: email };
          const result = await applicationCollection.find(query).toArray();
 

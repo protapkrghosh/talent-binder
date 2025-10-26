@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import {
@@ -36,6 +37,20 @@ const AuthProvider = ({ children }) => {
          if (currentUser) {
             setUser(currentUser);
             setLoading(false);
+            if (currentUser?.email) {
+               const userData = { email: currentUser?.email };
+               axios
+                  .post(`${import.meta.env.VITE_BASE_URL}/jwt`, userData, {
+                     withCredentials: true,
+                  })
+                  .then((res) => {
+                     console.log("Token after jwt", res.data);
+                     const token = res.data.token;
+                  })
+                  .catch((error) => {
+                     console.log(error);
+                  });
+            }
          }
       });
 
