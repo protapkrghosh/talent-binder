@@ -6,7 +6,7 @@ const PostedJobList = ({ jobsCreatedByPromise }) => {
 
    return (
       <div>
-         <h2>Jobs created by you: {jobs?.length}</h2>
+         <h2 className="text-lg">Jobs created by you: {jobs?.length}</h2>
 
          <div>
             {jobs?.length ? (

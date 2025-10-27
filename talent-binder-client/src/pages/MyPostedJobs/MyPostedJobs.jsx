@@ -9,7 +9,7 @@ const MyPostedJobs = () => {
    return (
       <div className="px-6 py-10">
          <div>
-            <h2>My Posted Jobs: </h2>
+            <h2 className="text-lg">My Posted Jobs: </h2>
 
             <Suspense>
                <PostedJobList
